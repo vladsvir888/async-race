@@ -6,7 +6,7 @@
     "scripts": {
         "start": "webpack serve --open --config ./webpack.config.js --env mode=dev",
         "build": "webpack --config ./webpack.config.js --env mode=prod",
-        "lint": "eslint . --ext .js"
+        "lint": "eslint . --ext .js --fix"
     },
     "repository": {
         "type": "git",
@@ -23,6 +23,7 @@
         "eslint": "^7.27.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-airbnb-base": "0.0.1-security",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-prettier": "^3.4.0",
         "html-webpack-plugin": "^5.2.0",
