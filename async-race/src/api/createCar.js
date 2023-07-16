@@ -1,4 +1,4 @@
-import { ENDPOINT_GARAGE } from '../constants';
+import { ENDPOINT_GARAGE } from '../data';
 import renderGarage from '../ui/renderGarage';
 
 async function createCar(car) {

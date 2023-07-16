@@ -16,6 +16,9 @@ h2 {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
   padding: 10px;
   font-family: 'Inter', sans-serif;
   color: #fff;
@@ -86,7 +89,6 @@ input:disabled {
   display: flex;
   flex-direction: column;
   row-gap: 15px;
-  margin-bottom: 35px;
 }
 
 .control-panel__item {
@@ -117,7 +119,6 @@ h1 {
 .pagination {
   display: flex;
   gap: 10px;
-  margin-top: 30px;
 }
 
 .table-wrap {
@@ -136,19 +137,4 @@ h1 {
 
 .table tbody tr:nth-child(odd) {
   background-color: rgba(204, 204, 204, 0.05);
-}
-
-.preloader {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #fff;
-  border-radius: 50%;
-  border-top-color: transparent;
-  animation: preloader 1s linear infinite;
-}
-
-@keyframes preloader {
-  100% {
-    transform: rotate(360deg);
-  }
 }

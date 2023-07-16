@@ -1,10 +1,11 @@
-import { ENDPOINT_GARAGE } from '../constants';
+import { ENDPOINT_GARAGE } from '../data';
 
-async function getCars() {
-  const response = await fetch(ENDPOINT_GARAGE);
+async function getCars(paramsString) {
+  const response = await fetch(`${ENDPOINT_GARAGE}?${paramsString}`);
   const result = await response.json();
+  const totalItems = Number(response.headers.get('x-total-count'));
 
-  return result;
+  return { result, totalItems };
 }
 
 export default getCars;
