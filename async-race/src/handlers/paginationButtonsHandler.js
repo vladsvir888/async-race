@@ -1,16 +1,26 @@
 import { store } from '../data';
 import renderGarage from '../ui/renderGarage';
+import renderWinners from '../ui/renderWinners';
+import checkTypeView from '../utils/checkTypeView';
 
 function paginationButtonsHandler() {
-  const prevButton = document.querySelector('.js-prev-button');
-  const nextButton = document.querySelector('.js-next-button');
+  document.addEventListener('click', (event) => {
+    const { target } = event;
 
-  prevButton?.addEventListener('click', () => {
-    renderGarage(store.currentPage -= 1);
-  });
+    if (!target.matches('.js-prev-button, .js-next-button')) return;
 
-  nextButton?.addEventListener('click', () => {
-    renderGarage(store.currentPage += 1);
+    const value = checkTypeView();
+    let pageDirection = 1;
+
+    if (target.classList.contains('js-prev-button')) {
+      pageDirection = -1;
+    }
+
+    if (value === 'garage') {
+      renderGarage(store.currentPageGarage += pageDirection);
+    } else {
+      renderWinners(store.currentPageWinners += pageDirection);
+    }
   });
 }
 

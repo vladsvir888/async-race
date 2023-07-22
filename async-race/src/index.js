@@ -1,18 +1,24 @@
 import './global.css';
 import createCarHandler from './handlers/createCarHandler';
 import deleteCarHandler from './handlers/deleteCarHandler';
-import renderControlPanel from './ui/renderControlPanel';
-import renderPagination from './ui/renderPagination';
-import renderGarage from './ui/renderGarage';
-import paginationButtonsHandler from './handlers/paginationButtonsHandler';
 import selectCarHandler from './handlers/selectCarHandler';
+import updateCarHandler from './handlers/updateCarHandler';
+import paginationButtonsHandler from './handlers/paginationButtonsHandler';
+import toWinnersHandler from './handlers/toWinnersHandler';
+import toGarageHandler from './handlers/toGarageHandler';
+import renderGarage from './ui/renderGarage';
+import renderWinners from './ui/renderWinners';
+import renderToggleButtons from './ui/renderToggleButtons';
 
 document.addEventListener('DOMContentLoaded', () => {
-  renderControlPanel();
-  renderPagination();
+  renderToggleButtons();
   renderGarage();
+  renderWinners();
   createCarHandler();
   deleteCarHandler();
-  paginationButtonsHandler();
   selectCarHandler();
+  updateCarHandler();
+  paginationButtonsHandler();
+  toWinnersHandler();
+  toGarageHandler();
 });

@@ -1,17 +1,18 @@
-import createCar from '../api/createCar';
+import garageService from '../api/garageService';
+import renderGarage from '../ui/renderGarage';
+import getColorAndNameFromInputs from '../utils/getColorAndNameFromInputs';
 
 function createCarHandler() {
-  const createButton = document.querySelector('.js-create-button');
+  document.addEventListener('click', async (event) => {
+    const { target } = event;
 
-  createButton?.addEventListener('click', () => {
-    const textInput = createButton.parentElement.querySelector('input[type="text"]');
-    const colorInput = createButton.parentElement.querySelector('input[type="color"]');
-    const car = {
-      name: textInput.value || 'Unnamed Car',
-      color: colorInput.value,
-    };
+    if (!target.classList.contains('js-create-button')) return;
 
-    createCar(car);
+    const car = getColorAndNameFromInputs(target);
+
+    await garageService.createCar(car);
+
+    renderGarage();
   });
 }
 

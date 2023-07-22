@@ -1,4 +1,4 @@
-function renderCar(car) {
+function getCarString(car) {
   return `
     <div class="garage__item" data-id="${car.id}">
       <button class="button button--secondary js-select-btn">Select</button>
@@ -15,4 +15,4 @@ function renderCar(car) {
   `;
 }
 
-export default renderCar;
+export default getCarString;

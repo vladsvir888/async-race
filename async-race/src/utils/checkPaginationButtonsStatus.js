@@ -1,17 +1,16 @@
-import { store } from '../data';
-
-function checkPaginationButtonsStatus(page, totalItems) {
+function checkPaginationButtonsStatus(page, totalItems, limit) {
   let prevDisabled;
   let nextDisabled;
-  const pageCount = Math.ceil(totalItems / store.LIMIT);
+  const isFirstPage = page === 1;
+  const isLastPage = totalItems / (page * limit) <= 1;
 
-  if (page === 1) {
+  if (isFirstPage) {
     prevDisabled = true;
   } else {
     prevDisabled = false;
   }
 
-  if (pageCount === store.currentPage) {
+  if (isLastPage) {
     nextDisabled = true;
   } else {
     nextDisabled = false;
