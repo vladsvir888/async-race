@@ -12,7 +12,7 @@ function getControlPanelString() {
         <button class="button button--secondary js-update-button" disabled>Update</button>
       </div>
       <div class="control-panel__item">
-        <button class="button button--secondary">Generate cars</button>
+        <button class="button button--secondary js-random-generate-button">Generate cars</button>
       </div>
     </div>
   `;

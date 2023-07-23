@@ -20,7 +20,7 @@ async function getWinnersString(page) {
     _limit: limit,
   }).toString();
   const { result, totalItems } = await winnersService.getWinners(paramsString);
-  const resultAfterTransform = result.map(async (winner) => {
+  const promiseResult = result.map(async (winner) => {
     const car = await garageService.getCar(winner.id);
     const newCar = {
       time: winner.time,
@@ -30,7 +30,7 @@ async function getWinnersString(page) {
 
     return newCar;
   });
-  const winners = await Promise.all(resultAfterTransform);
+  const winners = await Promise.all(promiseResult);
   const winnersString = winners.map((winner, index) => getWinnerString(winner, index)).join('');
   const [prev, next] = checkPaginationButtonsStatus(page, totalItems, limit);
   const isWinners = checkTypeView();

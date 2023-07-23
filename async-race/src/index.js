@@ -9,6 +9,7 @@ import toGarageHandler from './handlers/toGarageHandler';
 import renderGarage from './ui/renderGarage';
 import renderWinners from './ui/renderWinners';
 import renderToggleButtons from './ui/renderToggleButtons';
+import randomGeneratorHandler from './handlers/randomGeneratorHandler';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderToggleButtons();
@@ -21,4 +22,5 @@ document.addEventListener('DOMContentLoaded', () => {
   paginationButtonsHandler();
   toWinnersHandler();
   toGarageHandler();
+  randomGeneratorHandler();
 });

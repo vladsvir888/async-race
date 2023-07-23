@@ -11,13 +11,14 @@ function updateCarHandler() {
     if (!target.classList.contains('js-update-button')) return;
 
     const car = getColorAndNameFromInputs(target);
-
     await garageService.updateCar(target.dataset.id, car);
-    await winnersService.updateWinner(target.dataset.id, {
+
+    const winner = {
       wins: target.dataset.wins,
       time: target.dataset.time,
       ...car,
-    });
+    };
+    await winnersService.updateWinner(target.dataset.id, winner);
 
     renderGarage();
     renderWinners();
