@@ -10,6 +10,7 @@ import renderGarage from './ui/renderGarage';
 import renderWinners from './ui/renderWinners';
 import renderToggleButtons from './ui/renderToggleButtons';
 import randomGeneratorHandler from './handlers/randomGeneratorHandler';
+import sortHandler from './handlers/sortHandler';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderToggleButtons();
@@ -23,4 +24,5 @@ document.addEventListener('DOMContentLoaded', () => {
   toWinnersHandler();
   toGarageHandler();
   randomGeneratorHandler();
+  sortHandler();
 });

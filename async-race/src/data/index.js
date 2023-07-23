@@ -6,6 +6,8 @@ const store = {
   LIMIT_WINNERS: 10,
   currentPageGarage: 1,
   currentPageWinners: 1,
+  sort: 'id',
+  order: 'ASC',
   prevButtonDisabledGarage: true,
   nextButtonDisabledGarage: true,
   prevButtonDisabledWinners: true,

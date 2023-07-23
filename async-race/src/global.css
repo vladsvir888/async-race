@@ -148,6 +148,14 @@ input:disabled {
   text-align: left;
 }
 
+.table th svg {
+  fill: currentColor;
+}
+
+.table__heading {
+  cursor: pointer;
+}
+
 .table tbody tr:nth-child(odd) {
   background-color: rgba(204, 204, 204, 0.05);
 }
