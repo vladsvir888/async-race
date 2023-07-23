@@ -1,5 +1,5 @@
 import { store } from '../data';
-import garageService from '../api/garageService';
+import GarageService from '../api/garageService';
 import checkPaginationButtonsStatus from '../utils/checkPaginationButtonsStatus';
 import getCarString from '../utils/getCarString';
 import getControlPanelString from '../utils/getControlPanelString';
@@ -19,7 +19,7 @@ async function getGarageString(page) {
     _page: page,
     _limit: limit,
   }).toString();
-  const { result, totalItems } = await garageService.getCars(paramsString);
+  const { result, totalItems } = await GarageService.getCars(paramsString);
   const carsString = result.map((car) => getCarString(car)).join('');
   const [prev, next] = checkPaginationButtonsStatus(page, totalItems, limit);
   const isGarage = checkTypeView();

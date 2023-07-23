@@ -11,6 +11,8 @@ import renderWinners from './ui/renderWinners';
 import renderToggleButtons from './ui/renderToggleButtons';
 import randomGeneratorHandler from './handlers/randomGeneratorHandler';
 import sortHandler from './handlers/sortHandler';
+import startEngineHandler from './handlers/startEngineHandler';
+import stopEngineHandler from './handlers/stopEngineHandler';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderToggleButtons();
@@ -25,4 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   toGarageHandler();
   randomGeneratorHandler();
   sortHandler();
+  startEngineHandler();
+  stopEngineHandler();
 });

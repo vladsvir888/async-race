@@ -1,6 +1,6 @@
 import { ENDPOINT_WINNERS } from '../data';
 
-class winnersService {
+class WinnersService {
   static async getWinners(paramsString) {
     const response = await fetch(`${ENDPOINT_WINNERS}?${paramsString}`);
     const result = await response.json();
@@ -35,4 +35,4 @@ class winnersService {
   }
 }
 
-export default winnersService;
+export default WinnersService;

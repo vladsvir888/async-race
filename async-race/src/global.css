@@ -63,6 +63,10 @@ button {
   height: 50px;
 }
 
+.button--icon svg {
+  pointer-events: none;
+}
+
 .button--primary {
   background-color: #0284c7;
 }
@@ -150,6 +154,7 @@ input:disabled {
 
 .table th svg {
   fill: currentColor;
+  pointer-events: none;
 }
 
 .table__heading {

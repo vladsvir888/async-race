@@ -1,5 +1,5 @@
-import garageService from '../api/garageService';
-import winnersService from '../api/winnersService';
+import GarageService from '../api/garageService';
+import WinnersService from '../api/winnersService';
 import renderGarage from '../ui/renderGarage';
 import renderWinners from '../ui/renderWinners';
 
@@ -9,8 +9,8 @@ function deleteCarHandler() {
 
     if (!target.classList.contains('js-remove-btn')) return;
 
-    await garageService.deleteCar(target.parentElement.dataset.id);
-    await winnersService.deleteWinner(target.parentElement.dataset.id);
+    await GarageService.deleteCar(target.parentElement.dataset.id);
+    await WinnersService.deleteWinner(target.parentElement.dataset.id);
 
     renderGarage();
     renderWinners();

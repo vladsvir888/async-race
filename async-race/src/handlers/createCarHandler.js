@@ -1,4 +1,4 @@
-import garageService from '../api/garageService';
+import GarageService from '../api/garageService';
 import renderGarage from '../ui/renderGarage';
 import getColorAndNameFromInputs from '../utils/getColorAndNameFromInputs';
 
@@ -10,7 +10,7 @@ function createCarHandler() {
 
     const car = getColorAndNameFromInputs(target);
 
-    await garageService.createCar(car);
+    await GarageService.createCar(car);
 
     renderGarage();
   });

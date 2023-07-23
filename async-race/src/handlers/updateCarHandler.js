@@ -1,5 +1,5 @@
-import garageService from '../api/garageService';
-import winnersService from '../api/winnersService';
+import GarageService from '../api/garageService';
+import WinnersService from '../api/winnersService';
 import renderGarage from '../ui/renderGarage';
 import renderWinners from '../ui/renderWinners';
 import getColorAndNameFromInputs from '../utils/getColorAndNameFromInputs';
@@ -11,14 +11,14 @@ function updateCarHandler() {
     if (!target.classList.contains('js-update-button')) return;
 
     const car = getColorAndNameFromInputs(target);
-    await garageService.updateCar(target.dataset.id, car);
+    await GarageService.updateCar(target.dataset.id, car);
 
     const winner = {
       wins: target.dataset.wins,
       time: target.dataset.time,
       ...car,
     };
-    await winnersService.updateWinner(target.dataset.id, winner);
+    await WinnersService.updateWinner(target.dataset.id, winner);
 
     renderGarage();
     renderWinners();

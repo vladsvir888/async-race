@@ -11,6 +11,8 @@ function handle(sort) {
     renderWinners(store.currentPageWinners, sort, 'ASC');
     store.order = 'ASC';
   }
+
+  store.sort = sort;
 }
 
 function sortHandler() {

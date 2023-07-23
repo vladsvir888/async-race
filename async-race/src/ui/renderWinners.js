@@ -1,6 +1,6 @@
 import { store } from '../data';
-import winnersService from '../api/winnersService';
-import garageService from '../api/garageService';
+import WinnersService from '../api/winnersService';
+import GarageService from '../api/garageService';
 import checkPaginationButtonsStatus from '../utils/checkPaginationButtonsStatus';
 import getWinnerString from '../utils/getWinnerString';
 import getPaginationString from '../utils/getPaginationString';
@@ -21,9 +21,9 @@ async function getWinnersString(page, sort, order) {
     _sort: sort,
     _order: order,
   }).toString();
-  const { result, totalItems } = await winnersService.getWinners(paramsString);
+  const { result, totalItems } = await WinnersService.getWinners(paramsString);
   const promiseResult = result.map(async (winner) => {
-    const car = await garageService.getCar(winner.id);
+    const car = await GarageService.getCar(winner.id);
     const newCar = {
       time: winner.time,
       wins: winner.wins,

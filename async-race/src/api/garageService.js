@@ -1,6 +1,6 @@
 import { ENDPOINT_GARAGE } from '../data';
 
-class garageService {
+class GarageService {
   static async createCar(car) {
     await fetch(ENDPOINT_GARAGE, {
       method: 'POST',
@@ -45,4 +45,4 @@ class garageService {
   }
 }
 
-export default garageService;
+export default GarageService;

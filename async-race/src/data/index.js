@@ -1,6 +1,7 @@
 const API = 'http://127.0.0.1:3000';
 const ENDPOINT_GARAGE = `${API}/garage`;
 const ENDPOINT_WINNERS = `${API}/winners`;
+const ENDPOINT_ENGINE = `${API}/engine`;
 const store = {
   LIMIT_GARAGE: 7,
   LIMIT_WINNERS: 10,
@@ -20,4 +21,5 @@ export {
   ENDPOINT_WINNERS,
   store,
   KEY_LS,
+  ENDPOINT_ENGINE,
 };

@@ -1,5 +1,5 @@
-import garageService from '../api/garageService';
-import winnersService from '../api/winnersService';
+import GarageService from '../api/garageService';
+import WinnersService from '../api/winnersService';
 
 function updateAttributes(name, color, id, wins, time) {
   const updateButton = document.querySelector('.js-update-button');
@@ -23,8 +23,8 @@ function selectCarHandler() {
 
     if (!target.classList.contains('js-select-btn')) return;
 
-    const { name, color, id } = await garageService.getCar(target.parentElement.dataset.id);
-    const { wins, time } = await winnersService.getWinner(target.parentElement.dataset.id);
+    const { name, color, id } = await GarageService.getCar(target.parentElement.dataset.id);
+    const { wins, time } = await WinnersService.getWinner(target.parentElement.dataset.id);
 
     updateAttributes(name, color, id, wins, time);
 
