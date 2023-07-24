@@ -1,5 +1,4 @@
 import EngineService from '../api/engineService';
-import { store } from '../data';
 
 function startEngineHandler() {
   document.addEventListener('click', async (event) => {
@@ -29,8 +28,6 @@ function startEngineHandler() {
         fill: 'forwards',
       },
     );
-
-    store.carAnimation = animation;
 
     try {
       await EngineService.switchCarEngine(id, 'drive');
