@@ -4,7 +4,7 @@ import checkPaginationButtonsStatus from '../utils/checkPaginationButtonsStatus'
 import getCarString from '../utils/getCarString';
 import getControlPanelString from '../utils/getControlPanelString';
 import getPaginationString from '../utils/getPaginationString';
-import showError from '../utils/showError';
+import showMessage from '../utils/showMessage';
 import checkTypeView from '../utils/checkTypeView';
 
 function cleanGarage() {
@@ -45,7 +45,7 @@ async function renderGarage(page = store.currentPageGarage) {
 
     document.body.insertAdjacentHTML('beforeend', garageString);
   } catch (error) {
-    showError(error.message);
+    showMessage(error.message);
   }
 }
 

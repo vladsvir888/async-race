@@ -10,7 +10,6 @@ function startEngineHandler() {
     const parentWidth = parent.getBoundingClientRect().width;
     const { id } = parent.dataset;
     const result = await EngineService.switchCarEngine(id, 'started');
-    console.log(result);
     const time = Math.round(result.distance / result.velocity);
     const car = parent.querySelector('.garage__car');
     const stopButton = parent.querySelector('.js-stop-button');

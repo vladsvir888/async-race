@@ -4,7 +4,7 @@ import GarageService from '../api/garageService';
 import checkPaginationButtonsStatus from '../utils/checkPaginationButtonsStatus';
 import getWinnerString from '../utils/getWinnerString';
 import getPaginationString from '../utils/getPaginationString';
-import showError from '../utils/showError';
+import showMessage from '../utils/showMessage';
 import checkTypeView from '../utils/checkTypeView';
 
 function cleanWinners() {
@@ -88,7 +88,7 @@ async function renderWinners(
 
     document.body.insertAdjacentHTML('beforeend', tableString);
   } catch (error) {
-    showError(error.message);
+    showMessage(error.message);
   }
 }
 
