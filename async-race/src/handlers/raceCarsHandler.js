@@ -1,5 +1,40 @@
 import EngineService from '../api/engineService';
+import WinnersService from '../api/winnersService';
+import renderWinners from '../ui/renderWinners';
 import showMessage from '../utils/showMessage';
+
+function removeAlert() {
+  setTimeout(() => {
+    const alert = document.querySelector('.alert');
+
+    if (alert) {
+      alert.remove();
+    }
+  }, 5000);
+}
+
+async function setWinner(id, time) {
+  const result = await WinnersService.getWinner(id);
+
+  if (!Object.keys(result).length) {
+    const winner = {
+      id,
+      time,
+      wins: 1,
+    };
+
+    await WinnersService.createWinner(winner);
+  } else {
+    const winner = {
+      wins: result.wins + 1,
+      time: time < result.time ? time : result.time,
+    };
+
+    await WinnersService.updateWinner(id, winner);
+  }
+
+  renderWinners();
+}
 
 function raceCarsHandler() {
   document.addEventListener('click', async (event) => {
@@ -14,6 +49,7 @@ function raceCarsHandler() {
 
     result.forEach(async (item, index) => {
       const currentElement = items[index];
+      const { id } = currentElement.dataset;
       const time = Math.round(item.distance / item.velocity);
       const car = currentElement.querySelector('.garage__car');
       const carWidth = car.getBoundingClientRect().width;
@@ -39,7 +75,11 @@ function raceCarsHandler() {
 
         if (isSuccess) return;
 
-        showMessage(`Winner - ${titleText}`);
+        const animationTime = Number((animation.currentTime / 1000).toFixed(2));
+
+        showMessage(`Winner - ${titleText}, time - ${animationTime}sec.`);
+
+        setWinner(id, animationTime);
 
         isSuccess = true;
       } catch (error) {
@@ -48,13 +88,7 @@ function raceCarsHandler() {
         startButton.disabled = false;
       }
 
-      setTimeout(() => {
-        const alert = document.querySelector('.alert');
-
-        if (alert) {
-          alert.remove();
-        }
-      }, 2000);
+      removeAlert();
     });
   });
 }

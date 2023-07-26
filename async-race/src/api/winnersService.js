@@ -33,6 +33,16 @@ class WinnersService {
 
     return result;
   }
+
+  static async createWinner(winner) {
+    await fetch(ENDPOINT_WINNERS, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(winner),
+    });
+  }
 }
 
 export default WinnersService;
