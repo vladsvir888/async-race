@@ -1,7 +1,8 @@
 import { ENDPOINT_ENGINE } from '../data';
+import { IEngineInfo } from '../types';
 
 class EngineService {
-  static async switchCarEngine(id, status) {
+  public static async switchCarEngine(id: string, status: string): Promise<IEngineInfo> {
     const paramsString = new URLSearchParams({
       id,
       status,

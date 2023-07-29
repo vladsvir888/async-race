@@ -1,4 +1,6 @@
-function getWinnerString(winner, index) {
+import { IWinnerCar } from '../types';
+
+function getWinnerString(winner: IWinnerCar, index: number): string {
   return `
     <tr>
       <td>

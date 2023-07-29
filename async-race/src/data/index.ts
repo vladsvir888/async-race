@@ -13,6 +13,7 @@ const store = {
   nextButtonDisabledGarage: true,
   prevButtonDisabledWinners: true,
   nextButtonDisabledWinners: true,
+  idCar: 1,
 };
 const KEY_LS = 'type_view_async_race_vs';
 

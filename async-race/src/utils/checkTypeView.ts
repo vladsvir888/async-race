@@ -1,6 +1,6 @@
 import { KEY_LS } from '../data';
 
-function checkTypeView() {
+function checkTypeView(): string {
   const value = localStorage.getItem(KEY_LS) || 'garage';
 
   return value;

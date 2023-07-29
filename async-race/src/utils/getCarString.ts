@@ -1,4 +1,6 @@
-function getCarString(car) {
+import { ICarOutput } from '../types';
+
+function getCarString(car: ICarOutput): string {
   return `
     <div class="garage__item" data-id="${car.id}">
       <button class="button button--secondary js-select-btn">Select</button>

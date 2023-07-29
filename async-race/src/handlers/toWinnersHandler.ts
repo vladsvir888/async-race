@@ -2,9 +2,9 @@ import { KEY_LS } from '../data';
 import renderToggleButtons from '../ui/renderToggleButtons';
 import toggleHiddenAttribute from '../utils/toggleHiddenAttribute';
 
-function toWinnersHandler() {
+function toWinnersHandler(): void {
   document.addEventListener('click', (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-to-winners-button')) return;
 

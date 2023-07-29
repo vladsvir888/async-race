@@ -1,4 +1,8 @@
-function checkPaginationButtonsStatus(page, totalItems, limit) {
+function checkPaginationButtonsStatus(
+  page: number,
+  totalItems: number,
+  limit: number,
+): [boolean, boolean] {
   let prevDisabled;
   let nextDisabled;
   const isFirstPage = page === 1;

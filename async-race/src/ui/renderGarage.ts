@@ -7,17 +7,17 @@ import getPaginationString from '../utils/getPaginationString';
 import showMessage from '../utils/showMessage';
 import checkTypeView from '../utils/checkTypeView';
 
-function cleanGarage() {
+function cleanGarage(): void {
   const garageWrapper = document.querySelector('.garage-wrapper');
 
   if (garageWrapper) garageWrapper.outerHTML = '';
 }
 
-async function getGarageString(page) {
+async function getGarageString(page: number): Promise<string> {
   const limit = store.LIMIT_GARAGE;
   const paramsString = new URLSearchParams({
-    _page: page,
-    _limit: limit,
+    _page: page.toString(),
+    _limit: limit.toString(),
   }).toString();
   const { result, totalItems } = await GarageService.getCars(paramsString);
   const carsString = result.map((car) => getCarString(car)).join('');
@@ -37,7 +37,7 @@ async function getGarageString(page) {
   `;
 }
 
-async function renderGarage(page = store.currentPageGarage) {
+async function renderGarage(page = store.currentPageGarage): Promise<void> {
   try {
     cleanGarage();
 
@@ -45,7 +45,9 @@ async function renderGarage(page = store.currentPageGarage) {
 
     document.body.insertAdjacentHTML('beforeend', garageString);
   } catch (error) {
-    showMessage(error.message);
+    if (error instanceof Error) {
+      showMessage(error.message);
+    }
   }
 }
 

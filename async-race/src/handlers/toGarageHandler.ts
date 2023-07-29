@@ -2,9 +2,9 @@ import { KEY_LS } from '../data';
 import renderToggleButtons from '../ui/renderToggleButtons';
 import toggleHiddenAttribute from '../utils/toggleHiddenAttribute';
 
-function toGarageHandler() {
+function toGarageHandler(): void {
   document.addEventListener('click', (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-to-garage-button')) return;
 

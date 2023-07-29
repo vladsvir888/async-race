@@ -1,17 +1,22 @@
 import { KEY_LS } from '../data';
+import showMessage from './showMessage';
 
-function toggleHiddenAttribute() {
+function toggleHiddenAttribute(): void {
   const value = localStorage.getItem(KEY_LS);
   const garageWrapper = document.querySelector('.garage-wrapper');
   const winnersWrapper = document.querySelector('.winners-wrapper');
 
-  if (!garageWrapper || !winnersWrapper) return;
+  if (!garageWrapper || !winnersWrapper) {
+    showMessage("Some view doesn't exist", true);
+
+    return;
+  }
 
   if (value === 'garage') {
     garageWrapper.removeAttribute('hidden');
-    winnersWrapper.setAttribute('hidden', true);
+    winnersWrapper.setAttribute('hidden', '');
   } else {
-    garageWrapper.setAttribute('hidden', true);
+    garageWrapper.setAttribute('hidden', '');
     winnersWrapper.removeAttribute('hidden');
   }
 }

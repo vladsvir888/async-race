@@ -3,9 +3,9 @@ import renderGarage from '../ui/renderGarage';
 import renderWinners from '../ui/renderWinners';
 import checkTypeView from '../utils/checkTypeView';
 
-function paginationButtonsHandler() {
+function paginationButtonsHandler(): void {
   document.addEventListener('click', (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.matches('.js-prev-button, .js-next-button')) return;
 

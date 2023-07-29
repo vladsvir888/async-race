@@ -2,9 +2,9 @@ import GarageService from '../api/garageService';
 import renderGarage from '../ui/renderGarage';
 import getRandomCars from '../utils/getRandomCars';
 
-function randomGeneratorHandler() {
+function randomGeneratorHandler(): void {
   document.addEventListener('click', async (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-random-generate-button')) return;
 

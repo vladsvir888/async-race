@@ -1,7 +1,7 @@
 import { store } from '../data';
 import renderWinners from '../ui/renderWinners';
 
-function handle(sort) {
+function handle(sort: string): void {
   const type = store.order;
 
   if (type === 'ASC') {
@@ -15,9 +15,9 @@ function handle(sort) {
   store.sort = sort;
 }
 
-function sortHandler() {
+function sortHandler(): void {
   document.addEventListener('click', (event) => {
-    const { target } = event;
+    const target = <HTMLTableCellElement>event.target;
 
     if (!target.classList.contains('table__heading')) return;
 

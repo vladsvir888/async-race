@@ -7,17 +7,17 @@ import getPaginationString from '../utils/getPaginationString';
 import showMessage from '../utils/showMessage';
 import checkTypeView from '../utils/checkTypeView';
 
-function cleanWinners() {
+function cleanWinners(): void {
   const winnersWrapper = document.querySelector('.winners-wrapper');
 
   if (winnersWrapper) winnersWrapper.outerHTML = '';
 }
 
-async function getWinnersString(page, sort, order) {
+async function getWinnersString(page: number, sort: string, order: string): Promise<string> {
   const limit = store.LIMIT_WINNERS;
   const paramsString = new URLSearchParams({
-    _page: page,
-    _limit: limit,
+    _page: page.toString(),
+    _limit: limit.toString(),
     _sort: sort,
     _order: order,
   }).toString();
@@ -80,7 +80,7 @@ async function renderWinners(
   page = store.currentPageWinners,
   sort = store.sort,
   order = store.order,
-) {
+): Promise<void> {
   try {
     cleanWinners();
 
@@ -88,7 +88,9 @@ async function renderWinners(
 
     document.body.insertAdjacentHTML('beforeend', tableString);
   } catch (error) {
-    showMessage(error.message);
+    if (error instanceof Error) {
+      showMessage(error.message);
+    }
   }
 }
 

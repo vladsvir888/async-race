@@ -1,15 +1,23 @@
 import EngineService from '../api/engineService';
+import showMessage from '../utils/showMessage';
 
-function stopEngineHandler() {
+function stopEngineHandler(): void {
   document.addEventListener('click', async (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-stop-button')) return;
 
-    const parent = target.parentElement;
+    const parent = <HTMLElement>target.parentElement;
     const { id } = parent.dataset;
-    const car = parent.querySelector('.garage__car');
-    const startButton = parent.querySelector('.js-start-button');
+
+    if (!id) {
+      showMessage("Id doesn't exit", true);
+
+      return;
+    }
+
+    const car = <HTMLElement>parent.querySelector('.garage__car');
+    const startButton = <HTMLButtonElement>parent.querySelector('.js-start-button');
 
     await EngineService.switchCarEngine(id, 'stopped');
 

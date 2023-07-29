@@ -1,18 +1,18 @@
 import EngineService from '../api/engineService';
 
-function resetCarsHandler() {
+function resetCarsHandler(): void {
   document.addEventListener('click', async (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-reset-cars-button')) return;
 
-    const items = [...document.querySelectorAll('.garage__item')];
-    const promise = items.map((item) => EngineService.switchCarEngine(item.dataset.id, 'stopped'));
+    const items = <HTMLElement[]>[...document.querySelectorAll('.garage__item')];
+    const promise = items.map((item) => EngineService.switchCarEngine(<string>item.dataset.id, 'stopped'));
 
     await Promise.all(promise);
 
     items.forEach((item) => {
-      const car = item.querySelector('.garage__car');
+      const car = <HTMLElement>item.querySelector('.garage__car');
       car.getAnimations().forEach((animation) => animation.cancel());
     });
   });

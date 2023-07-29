@@ -1,4 +1,4 @@
-function getControlPanelString() {
+function getControlPanelString(): string {
   return `
     <div class="control-panel">
       <div class="control-panel__item">

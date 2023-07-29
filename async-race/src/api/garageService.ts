@@ -1,7 +1,8 @@
 import { ENDPOINT_GARAGE } from '../data';
+import { ICarInput, ICarOutput } from '../types';
 
 class GarageService {
-  static async createCar(car) {
+  public static async createCar(car: ICarInput): Promise<void> {
     await fetch(ENDPOINT_GARAGE, {
       method: 'POST',
       headers: {
@@ -11,13 +12,13 @@ class GarageService {
     });
   }
 
-  static async deleteCar(id) {
+  public static async deleteCar(id: number | string): Promise<void> {
     await fetch(`${ENDPOINT_GARAGE}/${id}`, {
       method: 'DELETE',
     });
   }
 
-  static async getCar(id) {
+  public static async getCar(id: number | string): Promise<ICarOutput> {
     const response = await fetch(`${ENDPOINT_GARAGE}/${id}`, {
       method: 'GET',
     });
@@ -26,7 +27,10 @@ class GarageService {
     return result;
   }
 
-  static async getCars(paramsString) {
+  public static async getCars(paramsString: string): Promise<{
+    result: ICarOutput[],
+    totalItems: number
+  }> {
     const response = await fetch(`${ENDPOINT_GARAGE}?${paramsString}`);
     const result = await response.json();
     const totalItems = Number(response.headers.get('x-total-count'));
@@ -34,7 +38,7 @@ class GarageService {
     return { result, totalItems };
   }
 
-  static async updateCar(id, car) {
+  public static async updateCar(id: number | string, car: ICarInput): Promise<void> {
     await fetch(`${ENDPOINT_GARAGE}/${id}`, {
       method: 'PUT',
       headers: {

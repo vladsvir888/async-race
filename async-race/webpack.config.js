@@ -1,11 +1,11 @@
-/* eslint-disable global-require */
 const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const EslintPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  entry: path.resolve(__dirname, './src/index.ts'),
   mode: 'development',
   module: {
     rules: [
@@ -13,10 +13,15 @@ const baseConfig = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.ts?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      }
     ],
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.js'],
   },
   output: {
     filename: 'index.js',
@@ -28,6 +33,7 @@ const baseConfig = {
       filename: 'index.html',
     }),
     new CleanWebpackPlugin(),
+    new EslintPlugin({ extensions: 'ts' }),
   ],
 };
 

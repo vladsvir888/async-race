@@ -1,18 +1,26 @@
 import EngineService from '../api/engineService';
+import showMessage from '../utils/showMessage';
 
-function startEngineHandler() {
+function startEngineHandler(): void {
   document.addEventListener('click', async (event) => {
-    const { target } = event;
+    const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-start-button')) return;
 
-    const parent = target.parentElement;
+    const parent = <HTMLElement>target.parentElement;
     const parentWidth = parent.getBoundingClientRect().width;
     const { id } = parent.dataset;
+
+    if (!id) {
+      showMessage("Id doesn't exist", true);
+
+      return;
+    }
+
     const result = await EngineService.switchCarEngine(id, 'started');
     const time = Math.round(result.distance / result.velocity);
-    const car = parent.querySelector('.garage__car');
-    const stopButton = parent.querySelector('.js-stop-button');
+    const car = <HTMLElement>parent.querySelector('.garage__car');
+    const stopButton = <HTMLButtonElement>parent.querySelector('.js-stop-button');
     const carWidth = car.getBoundingClientRect().width;
 
     target.disabled = true;
