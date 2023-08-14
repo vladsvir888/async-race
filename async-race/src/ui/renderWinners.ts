@@ -1,13 +1,13 @@
-import { store } from '../data';
+import { store } from '../constants';
 import WinnersService from '../api/winnersService';
 import GarageService from '../api/garageService';
 import checkPaginationButtonsStatus from '../utils/checkPaginationButtonsStatus';
 import getWinnerString from '../utils/getWinnerString';
 import getPaginationString from '../utils/getPaginationString';
 import showMessage from '../utils/showMessage';
-import checkTypeView from '../utils/checkTypeView';
+import getTypeView from '../utils/getTypeView';
 
-function cleanWinners(): void {
+function removeAllWinners(): void {
   const winnersWrapper = document.querySelector('.winners-wrapper');
 
   if (winnersWrapper) winnersWrapper.outerHTML = '';
@@ -35,7 +35,7 @@ async function getWinnersString(page: number, sort: string, order: string): Prom
   const winners = await Promise.all(promiseResult);
   const winnersString = winners.map((winner, index) => getWinnerString(winner, index)).join('');
   const [prev, next] = checkPaginationButtonsStatus(page, totalItems, limit);
-  const isWinners = checkTypeView();
+  const isWinners = getTypeView();
 
   return `
     <div class="winners-wrapper" ${isWinners !== 'winners' ? 'hidden' : ''}>
@@ -82,7 +82,7 @@ async function renderWinners(
   order = store.order,
 ): Promise<void> {
   try {
-    cleanWinners();
+    removeAllWinners();
 
     const tableString = await getWinnersString(page, sort, order);
 

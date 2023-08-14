@@ -1,7 +1,7 @@
-import checkTypeView from '../utils/checkTypeView';
+import getTypeView from '../utils/getTypeView';
 
 function renderToggleButtons(): void {
-  const value = checkTypeView();
+  const value = getTypeView();
   const buttonsWrapper = document.querySelector('.toggle-buttons');
 
   if (buttonsWrapper) buttonsWrapper.outerHTML = '';

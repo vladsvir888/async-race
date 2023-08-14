@@ -1,6 +1,5 @@
 import GarageService from '../api/garageService';
-import { store } from '../data';
-import showMessage from '../utils/showMessage';
+import { store } from '../constants';
 
 function updateAttributes(name: string, color: string, id: number): void {
   const updateButton = <HTMLButtonElement>document.querySelector('.js-update-button');
@@ -22,16 +21,14 @@ function selectCarHandler(): void {
 
     if (!target.classList.contains('js-select-btn')) return;
 
-    const parent = target.parentElement;
-    const parentId = parent?.dataset.id;
+    const targetParent = target.parentElement;
+    const targetParentId = targetParent?.dataset.id;
 
-    if (!parentId) {
-      showMessage("Id doesn't exist", true);
-
+    if (!targetParentId) {
       return;
     }
 
-    const { name, color, id } = await GarageService.getCar(parentId);
+    const { name, color, id } = await GarageService.getCar(targetParentId);
 
     updateAttributes(name, color, id);
 

@@ -1,4 +1,4 @@
-import { ENDPOINT_WINNERS } from '../data';
+import { ENDPOINT_WINNERS } from '../constants';
 import { IWinnerInput, IWinnerOutput } from '../types';
 
 class WinnersService {

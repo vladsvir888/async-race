@@ -1,4 +1,4 @@
-import { KEY_LS } from '../data';
+import { KEY_LS } from '../constants';
 import renderToggleButtons from '../ui/renderToggleButtons';
 import toggleHiddenAttribute from '../utils/toggleHiddenAttribute';
 

@@ -1,7 +1,7 @@
-import { store } from '../data';
+import { store } from '../constants';
 import renderGarage from '../ui/renderGarage';
 import renderWinners from '../ui/renderWinners';
-import checkTypeView from '../utils/checkTypeView';
+import getTypeView from '../utils/getTypeView';
 
 function paginationButtonsHandler(): void {
   document.addEventListener('click', (event) => {
@@ -9,7 +9,7 @@ function paginationButtonsHandler(): void {
 
     if (!target.matches('.js-prev-button, .js-next-button')) return;
 
-    const value = checkTypeView();
+    const value = getTypeView();
     let pageDirection = 1;
 
     if (target.classList.contains('js-prev-button')) {

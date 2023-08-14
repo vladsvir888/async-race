@@ -1,4 +1,4 @@
-import { ENDPOINT_ENGINE } from '../data';
+import { ENDPOINT_ENGINE } from '../constants';
 import { IEngineInfo } from '../types';
 
 class EngineService {

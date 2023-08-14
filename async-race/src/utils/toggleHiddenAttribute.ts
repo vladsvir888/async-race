@@ -1,5 +1,4 @@
-import { KEY_LS } from '../data';
-import showMessage from './showMessage';
+import { KEY_LS } from '../constants';
 
 function toggleHiddenAttribute(): void {
   const value = localStorage.getItem(KEY_LS);
@@ -7,8 +6,6 @@ function toggleHiddenAttribute(): void {
   const winnersWrapper = document.querySelector('.winners-wrapper');
 
   if (!garageWrapper || !winnersWrapper) {
-    showMessage("Some view doesn't exist", true);
-
     return;
   }
 

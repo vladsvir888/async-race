@@ -1,4 +1,4 @@
-import { ENDPOINT_GARAGE } from '../data';
+import { ENDPOINT_GARAGE } from '../constants';
 import { ICarInput, ICarOutput } from '../types';
 
 class GarageService {

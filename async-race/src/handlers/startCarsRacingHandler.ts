@@ -5,30 +5,26 @@ import renderWinners from '../ui/renderWinners';
 import showMessage from '../utils/showMessage';
 
 async function setWinner(id: string, time: number): Promise<void> {
-  const result = await WinnersService.getWinner(id);
+  const winner = await WinnersService.getWinner(id);
 
-  if (!Object.keys(result).length) {
-    const winner = {
+  if (!Object.keys(winner).length) {
+    await WinnersService.createWinner({
       id,
       time,
       wins: 1,
-    };
-
-    await WinnersService.createWinner(winner);
+    });
   } else {
-    const winner = {
-      wins: result.wins + 1,
-      time: time < result.time ? time : result.time,
-    };
-
-    await WinnersService.updateWinner(id, winner);
+    await WinnersService.updateWinner(id, {
+      wins: winner.wins + 1,
+      time: time < winner.time ? time : winner.time,
+    });
   }
 
   renderWinners();
 }
 
 function startRace(items: HTMLElement[], result: IEngineInfo[]): void {
-  let isSuccess = false;
+  let isRaceFinished = false;
 
   result.forEach(async (item, index) => {
     const currentElement = items[index];
@@ -56,7 +52,7 @@ function startRace(items: HTMLElement[], result: IEngineInfo[]): void {
     try {
       await EngineService.switchCarEngine(id, 'drive');
 
-      if (isSuccess) return;
+      if (isRaceFinished) return;
 
       const animationTime = Number((<number>animation.currentTime / 1000).toFixed(2));
 
@@ -64,7 +60,7 @@ function startRace(items: HTMLElement[], result: IEngineInfo[]): void {
 
       setWinner(id, animationTime);
 
-      isSuccess = true;
+      isRaceFinished = true;
     } catch (error) {
       animation.pause();
     } finally {
@@ -73,18 +69,17 @@ function startRace(items: HTMLElement[], result: IEngineInfo[]): void {
   });
 }
 
-function raceCarsHandler(): void {
+function startCarsRacingHandler(): void {
   document.addEventListener('click', async (event) => {
     const target = <HTMLButtonElement>event.target;
 
     if (!target.classList.contains('js-race-cars-button')) return;
 
-    const items = <HTMLElement[]>[...document.querySelectorAll('.garage__item')];
-    const promise = items.map((item) => EngineService.switchCarEngine(<string>item.dataset.id, 'started'));
-    const result = await Promise.all(promise);
+    const cars = <HTMLElement[]>[...document.querySelectorAll('.garage__item')];
+    const engineCharacteristics = await Promise.all(cars.map((car) => EngineService.switchCarEngine(<string>car.dataset.id, 'started')));
 
-    startRace(items, result);
+    startRace(cars, engineCharacteristics);
   });
 }
 
-export default raceCarsHandler;
+export default startCarsRacingHandler;

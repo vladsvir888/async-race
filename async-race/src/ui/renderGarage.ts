@@ -1,13 +1,13 @@
-import { store } from '../data';
+import { store } from '../constants';
 import GarageService from '../api/garageService';
 import checkPaginationButtonsStatus from '../utils/checkPaginationButtonsStatus';
 import getCarString from '../utils/getCarString';
 import getControlPanelString from '../utils/getControlPanelString';
 import getPaginationString from '../utils/getPaginationString';
 import showMessage from '../utils/showMessage';
-import checkTypeView from '../utils/checkTypeView';
+import getTypeView from '../utils/getTypeView';
 
-function cleanGarage(): void {
+function removeAllCars(): void {
   const garageWrapper = document.querySelector('.garage-wrapper');
 
   if (garageWrapper) garageWrapper.outerHTML = '';
@@ -22,7 +22,7 @@ async function getGarageString(page: number): Promise<string> {
   const { result, totalItems } = await GarageService.getCars(paramsString);
   const carsString = result.map((car) => getCarString(car)).join('');
   const [prev, next] = checkPaginationButtonsStatus(page, totalItems, limit);
-  const isGarage = checkTypeView();
+  const isGarage = getTypeView();
 
   return `
     <div class="garage-wrapper" ${isGarage !== 'garage' ? 'hidden' : ''}>
@@ -39,7 +39,7 @@ async function getGarageString(page: number): Promise<string> {
 
 async function renderGarage(page = store.currentPageGarage): Promise<void> {
   try {
-    cleanGarage();
+    removeAllCars();
 
     const garageString = await getGarageString(page);
 

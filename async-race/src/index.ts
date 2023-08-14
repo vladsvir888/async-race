@@ -13,8 +13,8 @@ import randomGeneratorHandler from './handlers/randomGeneratorHandler';
 import sortHandler from './handlers/sortHandler';
 import startEngineHandler from './handlers/startEngineHandler';
 import stopEngineHandler from './handlers/stopEngineHandler';
-import raceCarsHandler from './handlers/raceCarsHandler';
-import resetCarsHandler from './handlers/resetCarsHandler';
+import startCarsRacingHandler from './handlers/startCarsRacingHandler';
+import cancelCarsRacingHandler from './handlers/cancelCarsRacingHandler';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderToggleButtons();
@@ -31,6 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
   sortHandler();
   startEngineHandler();
   stopEngineHandler();
-  raceCarsHandler();
-  resetCarsHandler();
+  startCarsRacingHandler();
+  cancelCarsRacingHandler();
 });

@@ -1,8 +1,8 @@
 import GarageService from '../api/garageService';
-import { store } from '../data';
+import { store } from '../constants';
 import renderGarage from '../ui/renderGarage';
 import renderWinners from '../ui/renderWinners';
-import getColorAndNameFromInputs from '../utils/getColorAndNameFromInputs';
+import getColorAndNameCarFromInputs from '../utils/getColorAndNameCarFromInputs';
 import showMessage from '../utils/showMessage';
 
 function updateCarHandler(): void {
@@ -11,7 +11,7 @@ function updateCarHandler(): void {
 
     if (!target.classList.contains('js-update-button')) return;
 
-    const car = getColorAndNameFromInputs(target);
+    const car = getColorAndNameCarFromInputs(target);
 
     if (!car) {
       showMessage("Car doesn't exist", true);

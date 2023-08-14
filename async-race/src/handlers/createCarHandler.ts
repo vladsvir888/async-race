@@ -1,6 +1,6 @@
 import GarageService from '../api/garageService';
 import renderGarage from '../ui/renderGarage';
-import getColorAndNameFromInputs from '../utils/getColorAndNameFromInputs';
+import getColorAndNameCarFromInputs from '../utils/getColorAndNameCarFromInputs';
 import showMessage from '../utils/showMessage';
 
 function createCarHandler(): void {
@@ -9,7 +9,7 @@ function createCarHandler(): void {
 
     if (!target.classList.contains('js-create-button')) return;
 
-    const car = getColorAndNameFromInputs(target);
+    const car = getColorAndNameCarFromInputs(target);
 
     if (!car) {
       showMessage('Enter text into the input to create car', true);
